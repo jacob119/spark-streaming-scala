@@ -35,18 +35,6 @@ object App {
       Subscribe[String, String](topics, kafkaParams)
     )
 
-
-    //   val wordCounts = dstream.flatMap(_.value().split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
-    //    wordCounts.print();
-    //    wordCounts
-    //   wordCounts.map(println(_))
-    //     wordCounts.count()
-
-    //    println(dstream.count());
-    //    dstream.map(println(_))
-
-    //    dstream.map(record => (record.key, record.value))
-
     dstream.foreachRDD { rdd =>
       val offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
       rdd.foreach { res =>
